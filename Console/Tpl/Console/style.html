@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+    <include file="Console/Share/meta" />
+		
+</head>
+
+<body>
+	
+    <include file="Console/Share/top" />
+    
+    
+	<div class="container-fluid">
+		<div class="row-fluid">
+				
+			<include file="Console/Share/left" />
+            
+			
+			<div id="content" class="span10">
+			<!-- content starts -->
+			
+			
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="#">首页</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a href="#">款维护</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a href="#"><!--{$Think.get.styleno}--></a>
+					</li>
+					
+					
+				</ul>
+			</div>	
+			
+			<div>
+				<form action="" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="ado" value="addnewpic" />
+				<ul class="breadcrumb">
+					<li><strong>新增图片</strong> &nbsp; &nbsp; &nbsp; </li>
+					<li><input type="file" name="newpic" /></li>
+					<li><input type="submit" value="上传" /></li>
+				</ul>
+				</form>
+			</div>  
+			
+
+		  	
+			<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<th>Pic</th>
+									<th width="120" align="center">OrderBy</th>
+									<th width="120" align="center">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+									<volist name="list" id="vo">
+									<form action="" method="post">
+									<input type="hidden" name="id" value="<!--{$vo.id}-->">
+									<input type="hidden" name="ado" value="saveOrderBy" />
+									<tr>
+										<td height="100">
+										<img src="<!--{$vo.img}-->" height="250" />
+										</td>
+										<td><input type="text" name="orderby" value="<!--{$vo.orderby}-->" style="width:40px;" /><br>
+										<input type="submit" value="保存" /></td>
+										<td>
+											
+											
+											<a onClick="javascript:if(confirm('aa')){return true;}else{return false;}" class="btn btn-info RowStatic12" href="/Home/style/styleno/<!--{$Think.get.styleno}-->/delete/<!--{$vo.id}-->"> <i class="icon-edit icon-white"></i> 删除图片 </a>
+											  
+								  		</td>
+									</tr>
+									</form>
+									</volist>
+
+							</tbody>
+						</table>
+			
+       		
+			<!-- content ends -->
+			</div><!--/#content.span10-->
+		</div><!--/fluid-row-->
+				
+                
+		<include file="Console/Share/copyright" />
+		
+		
+	</div><!--/.fluid-container-->
+
+	<include file="Console/Share/footer" />
+	
+		
+</body>
+</html>

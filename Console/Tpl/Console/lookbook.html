@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+    <include file="Console/Share/meta" />
+		
+</head>
+
+<body>
+	
+    <include file="Console/Share/top" />
+    
+    
+	<div class="container-fluid">
+		<div class="row-fluid">
+				
+			<include file="Console/Share/left" />
+            
+			
+			<div id="content" class="span10">
+			<!-- content starts -->
+			
+			
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="#">首页</a> <span class="divider">/</span>
+					</li>
+					<li>
+						<a href="#">Lookbook 列表</a>
+					</li>
+				</ul>
+			</div>	  
+			
+			<style type="text/css">
+			.RowStatic12{ display:none;}
+			td:hover .RowStatic12{ display:block;}
+			</style>
+		  	
+			<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<th>LookBook</th>
+									<th width="120" align="center">StyleNo 1</th>
+									<th width="120" align="center">StyleNo 2</th>
+									<th width="120" align="center">StyleNo 3</th>
+									<th width="120" align="center">StyleNo 4</th>
+									<th width="120" align="center">StyleNo 5</th>
+									<th width="120" align="center">StyleNo 6</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+									<volist name="list" id="vo">
+
+									<input type="hidden" name="id" value="12">
+									<tr>
+										<td height="100">
+										<!--{$vo.CtrlNO}-->
+										</td>
+										<td>
+											<!--{$vo.relations.0.CateGoryCN}--><br>
+											<!--{$vo.relations.0.StyleCode}--><br>
+											<!--{$vo.relations.0.StyleColor}--><br>
+											<a class="btn btn-info RowStatic12" href="/Home/style/styleno/<!--{$vo.relations.0.StyleCode}-->"> <i class="icon-edit icon-white"></i> 维 护 图 片 </a>
+											  
+								  		</td>
+										<td>
+											<!--{$vo.relations.1.CateGoryCN}--><br>
+											<!--{$vo.relations.1.StyleCode}--><br>
+											<!--{$vo.relations.1.StyleColor}--><br>
+											<a class="btn btn-info RowStatic12" href="#"> <i class="icon-edit icon-white"></i> 维 护 图 片 </a>
+										
+										</td>
+										<td>
+										<!--{$vo.relations.2.CateGoryCN}--><br>
+											<!--{$vo.relations.2.StyleCode}--><br>
+											<!--{$vo.relations.2.StyleColor}--><br>
+											<a class="btn btn-info RowStatic12" href="#"> <i class="icon-edit icon-white"></i> 维 护 图 片 </a>
+										
+										</td>
+										<td class="center">
+										<!--{$vo.relations.3.CateGoryCN}--><br>
+											<!--{$vo.relations.3.StyleCode}--><br>
+											<!--{$vo.relations.3.StyleColor}-->
+										
+										
+										</td>
+										<td class="center">
+										<!--{$vo.relations.4.CateGoryCN}--><br>
+											<!--{$vo.relations.4.StyleCode}--><br>
+											<!--{$vo.relations.4.StyleColor}-->
+										
+										
+										</td>
+										<td>
+										<!--{$vo.relations.5.CateGoryCN}--><br>
+											<!--{$vo.relations.5.StyleCode}--><br>
+											<!--{$vo.relations.5.StyleColor}-->
+										
+										</td>
+									</tr>
+									
+									</volist>
+
+							</tbody>
+						</table>
+			
+       		
+			<!-- content ends -->
+			</div><!--/#content.span10-->
+		</div><!--/fluid-row-->
+				
+                
+		<include file="Console/Share/copyright" />
+		
+		
+	</div><!--/.fluid-container-->
+
+	<include file="Console/Share/footer" />
+	
+		
+</body>
+</html>
