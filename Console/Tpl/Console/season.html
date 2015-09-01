@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<include file="Console/Share/meta" />
+</head>
+<body>
+<include file="Console/Share/top" />
+<div class="container-fluid">
+	<div class="row-fluid"> <include file="Console/Share/left" />
+		<div id="content" class="span10">
+			<!-- content starts -->
+			<div>
+				<ul class="breadcrumb">
+					<li> <a href="#">首页</a> <span class="divider">/</span> </li>
+					<li> <a href="#"><if condition="$Think.get.s eq 'on'">当季品牌列表<else />往季品牌列表</if></a> </li>
+				</ul>
+			</div>
+
+
+			<div>
+				<form action="" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="ado" value="addnewad" />
+				<ul class="breadcrumb">
+						<if condition="$Think.get.s eq 'on'">
+						<input type="hidden" name="classname" value="onseason" />
+						<else />
+						<input type="hidden" name="classname" value="previousseason" />
+						</if>
+					<li><input type="submit" value="新增品牌" /></li>
+				</ul>
+				</form>
+			</div>  
+				
+				<volist name="list" id="vo">
+
+				<form action="" method="post" enctype="multipart/form-data">
+					<table class="table table-striped table-bordered">
+					<input type="hidden" name="ado" value="savead" />
+					<input type="hidden" name="id" value="<!--{$vo.id}-->">
+					<tr>
+						<td height="60" width="120">显示名<br><input type="text" name="ref3" value="<!--{$vo.ref3}-->" /></td>
+						<td width="120">季<br><select name="ref1">
+								<option value="<!--{$vo.ref1}-->"><!--{$vo.ref1}--></option>
+								<option value="2017FW">2017FW</option>
+								<option value="2017SS">2017SS</option>
+								<option value="2016FW">2016FW</option>
+								<option value="2016SS">2016SS</option>
+								<option value="2015FW">2015FW</option>
+								<option value="2015SS">2015SS</option>
+								<option value="2014FW">2014FW</option>
+								<option value="2014SS">2014SS</option>
+							</select></td>
+						<td width="120">品牌<br><select name="ref2">
+								<option value="PORTSW">PORTS WOMENS</option>
+								<option value="PORTSM">PORTS MENS</option>
+							</select></td>
+						<td width="50">排序<br><input type="text" name="orderby" value="<!--{$vo.orderby}-->" style="width:30px;" /></td>
+						<td width="50">显示<br>
+						<select name="show" style="width:80px;">
+							<option value="<!--{$vo.show}-->"><if condition="$vo.show eq '1'">显示<else />隐藏</if></option>
+							<option value="1">显示</option>
+							<option value="0">隐藏</option>
+						</select></td>
+						<td width="120"><input class="btn btn-small btn-primary" type="submit" value="保存" />
+							<a onClick="javascript:if(confirm('确认删除')){return true;}else{return false;}" class="btn btn-info RowStatic12" href="/Home/seasion/s/<!--{$Think.get.s}-->/delete/<!--{$vo.id}-->"> <i class="icon-edit icon-white"></i> 删除 </a></td>
+					</tr>
+					</table>
+				</form>
+
+				</volist>
+
+			<!-- content ends -->
+		</div>
+		<!--/#content.span10-->
+	</div>
+	<!--/fluid-row-->
+	<include file="Console/Share/copyright" /> </div>
+<!--/.fluid-container-->
+<include file="Console/Share/footer" />
+</body>
+</html>

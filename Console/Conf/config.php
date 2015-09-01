@@ -16,7 +16,7 @@ return array(
 		'DB_USER'              => "jackie",
 		'DB_PWD'               => "37113009",
 		'DB_PORT'              => '',
-		'DB_PREFIX'            => '',
+		'DB_PREFIX'            => 'ipad_',
 		
 		'DEFAULT_MODULE'		=> 'Home',
 		'DEFAULT_ACTION'		=> 'Login',
@@ -40,5 +40,9 @@ return array(
 		'LOG_RECORD' 			=> true,
 		'LOG_FILE_SIZE'			=> 50000000,
 		'LOG_FULL_DETAIL'		=> false,
+		
+
+		
+		
 );
 ?>
