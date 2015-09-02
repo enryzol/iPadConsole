@@ -36,7 +36,8 @@
 					<input type="hidden" name="id" value="<!--{$vo.id}-->">
 					<tr>
 						<td height="100" width="120"><img src="<!--{$vo.img}-->" height="150" /><br><input type="file" name="newpic" /></td>
-						<td width="120">季<br><select name="ref1">
+						<td height="100" width="120"><img src="<!--{$vo.simg}-->" height="100" /><br><input type="file" name="newspic" /></td>
+						<td width="120">季<br><select name="ref1" style="width:100px;">
 								<option value="<!--{$vo.ref1}-->"><!--{$vo.ref1}--></option>
 								<option value="2017FW">2017FW</option>
 								<option value="2017SS">2017SS</option>
@@ -48,8 +49,12 @@
 								<option value="2014SS">2014SS</option>
 							</select></td>
 						<td width="120">品牌<br><select name="ref2">
-								<option value="PORTSW">PORTS WOMENS</option>
-								<option value="PORTSM">PORTS MENS</option>
+								
+								<option value="<!--{$vo.ref2}-->"><!--{$vo.ref2}--></option>
+								<volist name="Brand" id="vo1">
+									<option value="<!--{$vo1.BrandLabelCode}-->"><!--{$vo1.BrandLabelCode}--></option>
+								</volist>
+		
 							</select></td>
 						<td width="50">排序<br><input type="text" name="orderby" value="<!--{$vo.orderby}-->" style="width:30px;" /></td>
 						<td width="50">显示<br>

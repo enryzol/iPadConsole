@@ -162,7 +162,8 @@ class HomeAction extends Action {
     			$this->error($upload->getErrorMsg());
     		}else{// 上传成功 获取上传文件信息
     			$info =  $upload->getUploadFileInfo();
-    			// 				print_r($info);
+    			 
+
     			$save = array(
     					"classname"	=> "mainscreen",
     					'img'	  	=> "/Public/Uploads/".$info[0]['savename'],
@@ -196,20 +197,43 @@ class HomeAction extends Action {
 // 				$this->error($upload->getErrorMsg());
 			}else{// 上传成功 获取上传文件信息
 				$upinfo =  $upload->getUploadFileInfo();
-				@unlink(".".$info['img']);
-				$save['img'] = "/Public/Uploads/".$upinfo[0]['savename'];
+				
+				
+				foreach($upinfo as $key=>$value){
+					if($value['key']=='newspic'){
+						$save['simg'] = "/Public/Uploads/".$value['savename'];
+						@unlink(".".$info['simg']);
+					}elseif($value['key']=='newpic'){
+						$save['img'] = "/Public/Uploads/".$value['savename'];
+						@unlink(".".$info['img']);
+					}
+				}
+				
 			}
     			
+// 			print_r($save);
 			$ob->where($map)->save($save);
+// 			return ;
 			$this->redirect("/Home/mainscreen");
     	}
     	if($_GET['delete']){
     		$map = array('id'=>$_GET['delete'],'classname'=>'mainscreen');
     		$info = $ob->where($map)->find();
     		@unlink(".".$info['img']);
+    		@unlink(".".$info['simg']);
     		$ob->where($map)->delete();
     		$this->redirect("/Home/mainscreen");
     	}
+    	
+    	$getData = array(
+    			'plugin'	=> 'ERP',
+    			'action'	=> 'ERPInfoAction',
+    			'entry'		=> 'getBrandList',
+    			 
+    	);
+    	$Brand = WebService('', 'Plugin', 'entry', $getData);
+    	 
+    	$this->assign('Brand',$Brand);
     	
     	
     	$this->assign('list',$list);
@@ -253,7 +277,15 @@ class HomeAction extends Action {
     	
     	$list = $ob->where($map)->order(array('orderby'=>'asc'))->select();
     	
+    	$getData = array(
+    			'plugin'	=> 'ERP',
+    			'action'	=> 'ERPInfoAction',
+    			'entry'		=> 'getBrandList',
     	
+    	);
+    	$Brand = WebService('', 'Plugin', 'entry', $getData);
+    	
+    	$this->assign('Brand',$Brand);
     	$this->assign('list',$list);
     	$this->display('/season');
     }

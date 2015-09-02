@@ -56,8 +56,10 @@
 							</select></td>
 						<td height="60" width="120">显示名<br><input type="text" name="ref3" style="width:160px;" value="<!--{$vo.ref3}-->" /></td>
 						<td width="120">品牌<br><select name="ref2">
-								<option value="PORTSW">PORTS WOMENS</option>
-								<option value="PORTSM">PORTS MENS</option>
+								<option value="<!--{$vo.ref2}-->"><!--{$vo.ref2}--></option>
+								<volist name="Brand" id="vo1">
+									<option value="<!--{$vo1.BrandLabelCode}-->"><!--{$vo1.BrandLabelCode}--></option>
+								</volist>
 							</select></td>
 						<td width="50">排序<br><input type="text" name="orderby" value="<!--{$vo.orderby}-->" style="width:30px;" /></td>
 						<td width="50">显示<br>
