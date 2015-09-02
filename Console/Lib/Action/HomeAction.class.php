@@ -61,6 +61,24 @@ class HomeAction extends Action {
     
     function lookbook(){
     	
+    	if($_POST['ado']=='uplook'){
+    		
+    		import('ORG.Net.UploadFile');
+    		$upload = new UploadFile();// 实例化上传类
+    		$upload->maxSize  = 3145728 ;// 设置附件上传大小
+    		$upload->allowExts  = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+    		$upload->savePath =  './Public/Uploads/Lookbook/';// 设置附件上传目录
+    		if(!$upload->upload()) {// 上传错误提示错误信息
+    			$this->error($upload->getErrorMsg());
+    		}else{// 上传成功 获取上传文件信息
+    			$info =  $upload->getUploadFileInfo();
+    			// 				print_r($info);
+    			
+    			$this->redirect("/Home/lookbook");
+    		}
+    		
+    	}
+    	
     	$getData = array(
     			'plugin'	=> 'ERP',
     			'action'	=> 'ERPLookAction',
@@ -71,7 +89,6 @@ class HomeAction extends Action {
     	
     	$list = WebService('hj', 'Plugin', 'entry', $getData);
     	
-
     	
     	$this->assign('list',$list);
     	$this->display('/lookbook');
@@ -210,12 +227,14 @@ class HomeAction extends Action {
     	}
     	
     	if($_POST['ado']=='savead'){
-    		$add['show'] 	= $_POST['show'];
-    		$add['orderby'] = $_POST['orderby'];
-    		$add['ref1'] = $_POST['ref1'];
-    		$add['ref2'] = $_POST['ref2'];
-    		$add['ref3'] = $_POST['ref3'];
-    		$ob->where(array('id'=>$_POST['id']))->save($add);
+    		$save['show'] 	= $_POST['show'];
+    		$save['orderby'] = $_POST['orderby'];
+    		$save['ref1'] = $_POST['ref1'];
+    		$save['ref2'] = $_POST['ref2'];
+    		$save['ref3'] = $_POST['ref3'];
+    		$save['ref4'] = $_POST['ref4'];
+    		$save['ref5'] = $_POST['ref5'];
+    		$ob->where(array('id'=>$_POST['id']))->save($save);
     		$this->redirect("/Home/seasion/s/".$_GET['s']);
     	}
     	
@@ -230,8 +249,6 @@ class HomeAction extends Action {
     		$ob->where($map)->delete();
     		$this->redirect("/Home/seasion/s/".$_GET['s']);
     	}
-    	
-    	
     	
     	
     	$list = $ob->where($map)->order(array('orderby'=>'asc'))->select();
